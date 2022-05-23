@@ -81,16 +81,29 @@ class _HomeViewState extends State<HomeView> {
               child: TextFormField(
                 decoration: InputDecoration(
                   hintText: 'Masukkan link Youtube disini',
-                  suffixIcon: InkWell(
-                      onTap: () {
-                        FlutterClipboard.paste().then((value) {
-                          setState(() {
-                            txturl.text = value;
-                            pasteValue = value;
-                          });
+                  prefixIcon: InkWell(
+                    onTap: () {
+                      FlutterClipboard.paste().then((value) {
+                        setState(() {
+                          txturl.text = value;
+                          pasteValue = value;
                         });
-                      },
-                      child: const Icon(Icons.paste)),
+                      });
+                    },
+                    child: const Icon(FontAwesomeIcons.paste),
+                  ),
+                  suffixIcon: InkWell(
+                    onTap: () {
+                      setState(() {
+                        txturl.clear();
+                      });
+                    },
+                    child: const Icon(
+                      Icons.cancel,
+                      size: 20,
+                      color: Colors.grey,
+                    ),
+                  ),
                 ),
                 controller: txturl,
                 keyboardType: TextInputType.text,
